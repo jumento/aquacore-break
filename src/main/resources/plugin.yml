@@ -1,0 +1,15 @@
+name: AquaCoreBreak
+version: '${version}'
+main: com.aquacore.breakplugin.AquaCoreBreak
+api-version: '1.21'
+authors: [Antigravity]
+description: A plugin to modify block drops when broken by hand.
+commands:
+  acb:
+    description: Main command for AquaCoreBreak
+    aliases: [aquacorebreak]
+    usage: /acb reload
+permissions:
+  aquacorebreak.admin:
+    description: Allows use of admin commands
+    default: op

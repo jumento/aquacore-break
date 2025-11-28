@@ -1,0 +1,51 @@
+﻿> Task :compileJava FAILED
+
+[Incubating] Problems report is available at: file:///C:/Users/jume/.gemini/antigravity/scratch/AquaCoreBreak/build/reports/problems/problems-report.html
+gradle : 
+En línea: 1 Carácter: 1
++ gradle compileJava 2>&1 | Out-File 
+-Encoding utf8 build_log_utf8.txt
++ ~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: 
+    (:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommand 
+   Error
+ 
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':compileJava'.
+> Could not resolve all files for 
+configuration ':compileClasspath'.
+   > Could not resolve io.papermc.paper:pape
+r-api:1.21-R0.1-SNAPSHOT.
+     Required by:
+         root project 'AquaCoreBreak'
+      > Dependency resolution is looking 
+for a library compatible with JVM runtime 
+version 17, but 'io.papermc.paper:paper-api:
+1.21-R0.1-SNAPSHOT:20240810.100446-132' is 
+only compatible with JVM runtime version 21 
+or newer.
+
+* Try:
+> Change the dependency on 'io.papermc.paper
+:paper-api:1.21-R0.1-SNAPSHOT:20240810.10044
+6-132' to an earlier version that supports 
+JVM runtime version 17.
+> Run with --stacktrace option to get the 
+stack trace.
+> Run with --info or --debug option to get 
+more log output.
+> Run with --scan to generate a Build Scan 
+(powered by Develocity).
+> Get more help at https://help.gradle.org.
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/9.2.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD FAILED in 1s
+1 actionable task: 1 executed

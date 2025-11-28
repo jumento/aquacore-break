@@ -1,0 +1,64 @@
+# AquaCoreBreak Configuration
+
+# List of worlds where the plugin is enabled
+enabled-worlds:
+  - world
+  - world_nether
+  - world_the_end
+
+# List of tools that bypass the plugin logic (vanilla drops will occur)
+tool-items:
+  - WOODEN_PICKAXE
+  - STONE_PICKAXE
+  - IRON_PICKAXE
+  - GOLDEN_PICKAXE
+  - DIAMOND_PICKAXE
+  - NETHERITE_PICKAXE
+  - WOODEN_AXE
+  - STONE_AXE
+  - IRON_AXE
+  - GOLDEN_AXE
+  - DIAMOND_AXE
+  - NETHERITE_AXE
+  - WOODEN_SHOVEL
+  - STONE_SHOVEL
+  - IRON_SHOVEL
+  - GOLDEN_SHOVEL
+  - DIAMOND_SHOVEL
+  - NETHERITE_SHOVEL
+  - WOODEN_HOE
+  - STONE_HOE
+  - IRON_HOE
+  - GOLDEN_HOE
+  - DIAMOND_HOE
+  - NETHERITE_HOE
+  - SHEARS
+
+# List of blocks that the plugin controls when broken without a tool
+hand-breakable-blocks:
+  - STONE
+  - DIRT
+  - GRASS_BLOCK
+  - OAK_LOG
+
+# Whitelist rules for specific blocks
+# Modes: DEFAULT, NONE, COMMAND, CUSTOM
+whitelist:
+  STONE:
+    mode: NONE
+  DIRT:
+    mode: DEFAULT
+  GRASS_BLOCK:
+    mode: CUSTOM
+    drops:
+      drop1:
+        item: DIAMOND
+        amount: 1
+        chance: 0.1
+      drop2:
+        item: WHEAT_SEEDS
+        amount: 2
+        chance: 0.5
+  OAK_LOG:
+    mode: COMMAND
+    command: "say %player% broke a log!"
