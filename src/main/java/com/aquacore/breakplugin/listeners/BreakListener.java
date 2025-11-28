@@ -45,12 +45,13 @@ public class BreakListener implements Listener {
             return;
         }
 
-        // 4. Check Hand-Breakable Blocks
+        // 4. Check Hand-Breakable Blocks - REMOVED to enforce whitelist for ALL blocks
         Material blockType = event.getBlock().getType();
-        List<String> handBreakableBlocks = plugin.getConfig().getStringList("hand-breakable-blocks");
-        if (!handBreakableBlocks.contains(blockType.name())) {
-            return;
-        }
+        // List<String> handBreakableBlocks =
+        // plugin.getConfig().getStringList("hand-breakable-blocks");
+        // if (!handBreakableBlocks.contains(blockType.name())) {
+        // return;
+        // }
 
         // 5. Check Whitelist Logic
         ConfigurationSection whitelist = plugin.getConfig().getConfigurationSection("whitelist");
