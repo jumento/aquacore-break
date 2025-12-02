@@ -15,7 +15,7 @@ public final class AquaCoreBreak extends JavaPlugin {
         updateConfig();
 
         // Register commands
-        getCommand("acb").setExecutor(new ReloadCommand(this));
+        getCommand("aquacorebreak").setExecutor(new ReloadCommand(this));
 
         // Register listeners
         getServer().getPluginManager().registerEvents(new BreakListener(this), this);

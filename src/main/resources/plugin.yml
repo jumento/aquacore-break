@@ -5,10 +5,10 @@ api-version: '1.21'
 authors: [jumke, Antigravity]
 description: A plugin to modify block drops when broken by hand.
 commands:
-  acb:
+  aquacorebreak:
     description: Main command for AquaCoreBreak
-    aliases: [aquacorebreak]
-    usage: /acb reload
+    aliases: [acb]
+    usage: /aquacorebreak reload
 permissions:
   aquacorebreak.admin:
     description: Allows use of admin commands

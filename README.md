@@ -26,8 +26,8 @@ AquaCoreBreak is a Minecraft 1.21 Paper plugin that modifies block drops when th
 
 ## Commands
 
-- `/acb reload`: Reloads the configuration file.
-    - Alias: `/aquacorebreak reload`
+- `/aquacorebreak reload`: Reloads the configuration file.
+    - Alias: `/acb reload`
     - Permission: `aquacorebreak.admin`
 
 ## Configuration
