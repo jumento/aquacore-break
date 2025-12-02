@@ -1,5 +1,13 @@
 # AquaCoreBreak Configuration
-config-version: 1
+config-version: 2
+
+# Global Toggles
+# Enable/Disable Silk Touch behavior (true = vanilla behavior, false = silk touch ignored)
+silk-touch: true
+# Enable/Disable block drops from explosions (true = vanilla drops, false = no drops)
+explosion-drops: true
+# Enable/Disable Enderman block pickup (true = allowed, false = disabled)
+enderman-pickup: true
 
 # List of worlds where the plugin is enabled
 enabled-worlds:

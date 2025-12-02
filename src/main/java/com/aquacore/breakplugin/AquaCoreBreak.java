@@ -2,6 +2,8 @@ package com.aquacore.breakplugin;
 
 import com.aquacore.breakplugin.commands.ReloadCommand;
 import com.aquacore.breakplugin.listeners.BreakListener;
+import com.aquacore.breakplugin.listeners.ExplosionListener;
+import com.aquacore.breakplugin.listeners.EntityChangeBlockListener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class AquaCoreBreak extends JavaPlugin {
@@ -17,12 +19,14 @@ public final class AquaCoreBreak extends JavaPlugin {
 
         // Register listeners
         getServer().getPluginManager().registerEvents(new BreakListener(this), this);
+        getServer().getPluginManager().registerEvents(new ExplosionListener(this), this);
+        getServer().getPluginManager().registerEvents(new EntityChangeBlockListener(this), this);
 
         getLogger().info("AquaCoreBreak has been enabled!");
     }
 
     private void updateConfig() {
-        int currentVersion = 1; // Current config version
+        int currentVersion = 2; // Current config version
         if (getConfig().getInt("config-version", 0) < currentVersion) {
             getConfig().options().copyDefaults(true);
             saveConfig();

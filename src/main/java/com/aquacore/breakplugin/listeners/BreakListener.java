@@ -42,6 +42,11 @@ public class BreakListener implements Listener {
         ItemStack itemInHand = player.getInventory().getItemInMainHand();
         String itemType = itemInHand.getType().name();
 
+        // Check Silk Touch Config
+        boolean silkTouchEnabled = plugin.getConfig().getBoolean("silk-touch", true);
+        boolean hasSilkTouch = itemInHand.containsEnchantment(org.bukkit.enchantments.Enchantment.SILK_TOUCH);
+        boolean shouldForceNoSilk = !silkTouchEnabled && hasSilkTouch;
+
         // 3. Check Whitelist Logic
         ConfigurationSection whitelist = plugin.getConfig().getConfigurationSection("whitelist");
 
@@ -94,7 +99,15 @@ public class BreakListener implements Listener {
 
             switch (mode) {
                 case "DEFAULT":
-                    // Do nothing, let vanilla drops happen
+                    // If forcing no silk touch, we must handle drops manually
+                    if (shouldForceNoSilk) {
+                        event.setDropItems(false);
+                        ItemStack toolWithoutSilk = itemInHand.clone();
+                        toolWithoutSilk.removeEnchantment(org.bukkit.enchantments.Enchantment.SILK_TOUCH);
+                        event.getBlock().getDrops(toolWithoutSilk).forEach(item -> event.getBlock().getWorld()
+                                .dropItemNaturally(event.getBlock().getLocation(), item));
+                    }
+                    // Else do nothing, let vanilla drops happen
                     break;
                 case "NONE":
                     event.setDropItems(false);
@@ -141,7 +154,16 @@ public class BreakListener implements Listener {
             // Fallback to global tool check
             List<String> toolItems = plugin.getConfig().getStringList("tool-items");
             if (toolItems.contains(itemType)) {
-                return; // Allow vanilla drops
+                // Allow vanilla drops (Global Bypass)
+                // BUT check for Silk Touch override
+                if (shouldForceNoSilk) {
+                    event.setDropItems(false);
+                    ItemStack toolWithoutSilk = itemInHand.clone();
+                    toolWithoutSilk.removeEnchantment(org.bukkit.enchantments.Enchantment.SILK_TOUCH);
+                    event.getBlock().getDrops(toolWithoutSilk).forEach(item -> event.getBlock().getWorld()
+                            .dropItemNaturally(event.getBlock().getLocation(), item));
+                }
+                return;
             }
 
             // Not in global tool list -> No drops

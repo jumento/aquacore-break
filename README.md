@@ -14,6 +14,9 @@ AquaCoreBreak is a Minecraft 1.21 Paper plugin that modifies block drops when th
     - `CUSTOM`: Configurable drops with chances.
 - **Creative Mode Support**: Plugin is disabled in Creative mode.
 - **Config Versioning**: Automatically updates configuration files while preserving settings.
+- **Silk Touch Control**: Toggle to enable/disable Silk Touch behavior globally.
+- **Explosion Drops**: Toggle to enable/disable block drops from explosions (TNT, Creepers, etc.).
+- **Enderman Pickup**: Toggle to allow/prevent Endermen from picking up blocks.
 
 ## Installation
 
@@ -34,6 +37,13 @@ The `config.yml` file allows you to customize the plugin behavior.
 ### Example Configuration
 
 ```yaml
+config-version: 2
+
+# Global Toggles
+silk-touch: true # Set to false to disable Silk Touch behavior (drops as if using normal tool)
+explosion-drops: true # Set to false to prevent blocks from dropping items when exploded
+enderman-pickup: true # Set to false to prevent Endermen from picking up blocks
+
 enabled-worlds:
   - world
 
