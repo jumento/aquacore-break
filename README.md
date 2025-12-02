@@ -4,8 +4,8 @@ AquaCoreBreak is a Minecraft 1.21 Paper plugin that modifies block drops when th
 
 ## Features
 
-- **Hand-Breakable Control**: Define which blocks are affected when broken by hand.
-- **Tool Bypass**: Define tools that bypass the plugin logic (vanilla behavior).
+- **Per-Block Tool Overrides**: Specify allowed tools for each block in the whitelist.
+- **Tool Bypass**: Define global tools that bypass the plugin logic (vanilla behavior) if no specific tool is defined for a block.
 - **World Support**: Enable the plugin only in specific worlds.
 - **Drop Modes**:
     - `DEFAULT`: Vanilla drops.
@@ -13,6 +13,7 @@ AquaCoreBreak is a Minecraft 1.21 Paper plugin that modifies block drops when th
     - `COMMAND`: Execute a command.
     - `CUSTOM`: Configurable drops with chances.
 - **Creative Mode Support**: Plugin is disabled in Creative mode.
+- **Config Versioning**: Automatically updates configuration files while preserving settings.
 
 ## Installation
 
@@ -36,16 +37,19 @@ The `config.yml` file allows you to customize the plugin behavior.
 enabled-worlds:
   - world
 
+# Global tools that bypass plugin logic if no specific tool is defined for a block
 tool-items:
   - DIAMOND_PICKAXE
 
-hand-breakable-blocks:
-  - STONE
-  - GRASS_BLOCK
-
 whitelist:
   STONE:
-    mode: NONE # No drops when broken by hand
+    mode: NONE # No drops when broken by hand (default behavior if no tool specified)
+  DIRT:
+    mode: DEFAULT
+    tool: STONE_SHOVEL # Only drops if broken with Stone Shovel
+  GRAVEL:
+    mode: DEFAULT
+    tool: GOLDEN_PICKAXE, NONE # Drops if broken with Golden Pickaxe OR Hand
   GRASS_BLOCK:
     mode: CUSTOM
     drops:

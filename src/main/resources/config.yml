@@ -1,4 +1,5 @@
 # AquaCoreBreak Configuration
+config-version: 1
 
 # List of worlds where the plugin is enabled
 enabled-worlds:
@@ -7,6 +8,7 @@ enabled-worlds:
   - world_the_end
 
 # List of tools that bypass the plugin logic (vanilla drops will occur)
+# This list is used as a fallback if a block in the whitelist does not have a specific 'tool' configuration.
 tool-items:
   - WOODEN_PICKAXE
   - STONE_PICKAXE
@@ -35,6 +37,7 @@ tool-items:
   - SHEARS
 
 # List of blocks that the plugin controls when broken without a tool
+# DEPRECATED: This list is no longer used. All blocks are checked against the whitelist.
 hand-breakable-blocks:
   - STONE
   - DIRT
@@ -43,22 +46,20 @@ hand-breakable-blocks:
 
 # Whitelist rules for specific blocks
 # Modes: DEFAULT, NONE, COMMAND, CUSTOM
+# tool: Optional. List of tools allowed to break this block (overrides global tool-items).
+#       Use "NONE" for empty hand.
 whitelist:
   STONE:
     mode: NONE
   DIRT:
     mode: DEFAULT
+    tool: STONE_SHOVEL
+  GRAVEL:
+    mode: DEFAULT
+    tool: GOLDEN_PICKAXE, NONE
   GRASS_BLOCK:
-    mode: CUSTOM
-    drops:
-      drop1:
-        item: DIAMOND
-        amount: 1
-        chance: 0.1
-      drop2:
-        item: WHEAT_SEEDS
-        amount: 2
-        chance: 0.5
+    mode: DEFAULT
+    # No tool specified -> Uses global tool-items list
   OAK_LOG:
     mode: COMMAND
     command: "say %player% broke a log!"

@@ -10,6 +10,7 @@ public final class AquaCoreBreak extends JavaPlugin {
     public void onEnable() {
         // Save default config
         saveDefaultConfig();
+        updateConfig();
 
         // Register commands
         getCommand("acb").setExecutor(new ReloadCommand(this));
@@ -18,6 +19,15 @@ public final class AquaCoreBreak extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new BreakListener(this), this);
 
         getLogger().info("AquaCoreBreak has been enabled!");
+    }
+
+    private void updateConfig() {
+        int currentVersion = 1; // Current config version
+        if (getConfig().getInt("config-version", 0) < currentVersion) {
+            getConfig().options().copyDefaults(true);
+            saveConfig();
+            getLogger().info("Config updated to version " + currentVersion);
+        }
     }
 
     @Override
