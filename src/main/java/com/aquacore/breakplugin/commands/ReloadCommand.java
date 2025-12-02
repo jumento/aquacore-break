@@ -1,7 +1,8 @@
 package com.aquacore.breakplugin.commands;
 
 import com.aquacore.breakplugin.AquaCoreBreak;
-import org.bukkit.ChatColor;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -20,16 +21,17 @@ public class ReloadCommand implements CommandExecutor {
             @NotNull String[] args) {
         if (args.length > 0 && args[0].equalsIgnoreCase("reload")) {
             if (!sender.hasPermission("aquacorebreak.admin")) {
-                sender.sendMessage(ChatColor.RED + "You do not have permission to use this command.");
+                sender.sendMessage(
+                        Component.text("You do not have permission to use this command.", NamedTextColor.RED));
                 return true;
             }
 
             plugin.reloadConfig();
-            sender.sendMessage(ChatColor.GREEN + "AquaCoreBreak configuration reloaded!");
+            sender.sendMessage(Component.text("AquaCoreBreak configuration reloaded!", NamedTextColor.GREEN));
             return true;
         }
 
-        sender.sendMessage(ChatColor.RED + "Usage: /acb reload");
+        sender.sendMessage(Component.text("Usage: /acb reload", NamedTextColor.RED));
         return true;
     }
 }
