@@ -44,9 +44,8 @@ public class BreakListener implements Listener {
 
         // 3. Check Whitelist Logic
         ConfigurationSection whitelist = plugin.getConfig().getConfigurationSection("whitelist");
-        boolean isWhitelisted = whitelist != null && whitelist.contains(blockType.name());
 
-        if (isWhitelisted) {
+        if (whitelist != null && whitelist.contains(blockType.name())) {
             ConfigurationSection blockConfig = whitelist.getConfigurationSection(blockType.name());
 
             // Check for specific tool override
