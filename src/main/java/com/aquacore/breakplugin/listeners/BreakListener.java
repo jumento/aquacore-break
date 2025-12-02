@@ -78,9 +78,11 @@ public class BreakListener implements Listener {
             } else {
                 // Fallback to global tool check
                 List<String> toolItems = plugin.getConfig().getStringList("tool-items");
-                if (toolItems.contains(itemType)) {
-                    return; // Allow vanilla drops
+                if (!toolItems.contains(itemType)) {
+                    event.setDropItems(false);
+                    return;
                 }
+                // If tool matches global list, fall through to switch(mode)
             }
 
             if (blockConfig == null) {
